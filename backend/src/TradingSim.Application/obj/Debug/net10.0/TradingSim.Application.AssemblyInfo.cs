@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TradingSim.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff88546a28212541c3a148441d20d3b6e97c96d7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d72af0e064e258b2f9fc3ca1bb594104c2f708b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TradingSim.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TradingSim.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
