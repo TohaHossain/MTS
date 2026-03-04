@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TradingSim.Application\TradingSim.Application.csproj" />
+    <ProjectReference Include="..\TradingSim.Infrastructure\TradingSim.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

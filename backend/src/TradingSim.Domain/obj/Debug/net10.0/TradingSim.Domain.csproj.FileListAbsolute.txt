@@ -1,13 +1,13 @@
 E:\MTS\backend\src\TradingSim.Domain\bin\Debug\net10.0\TradingSim.Domain.deps.json
 E:\MTS\backend\src\TradingSim.Domain\bin\Debug\net10.0\TradingSim.Domain.dll
 E:\MTS\backend\src\TradingSim.Domain\bin\Debug\net10.0\TradingSim.Domain.pdb
+E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.csproj.AssemblyReference.cache
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.GeneratedMSBuildEditorConfig.editorconfig
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.AssemblyInfoInputs.cache
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.AssemblyInfo.cs
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.csproj.CoreCompileInputs.cache
+E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.sourcelink.json
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.dll
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\refint\TradingSim.Domain.dll
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.pdb
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\ref\TradingSim.Domain.dll
-E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.sourcelink.json
-E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.csproj.AssemblyReference.cache

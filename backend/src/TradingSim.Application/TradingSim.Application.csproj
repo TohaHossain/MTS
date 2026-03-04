@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TradingSim.Domain\TradingSim.Domain.csproj" />
-    <ProjectReference Include="..\TradingSim.Infrastructure\TradingSim.Infrastructure.csproj" />
+    
   </ItemGroup>
 
   <PropertyGroup>

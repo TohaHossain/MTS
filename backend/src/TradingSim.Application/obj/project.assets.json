@@ -105,20 +105,6 @@
         "runtime": {
           "bin/placeholder/TradingSim.Domain.dll": {}
         }
-      },
-      "TradingSim.Infrastructure/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "dependencies": {
-          "MongoDB.Driver": "3.7.0",
-          "TradingSim.Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/TradingSim.Infrastructure.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TradingSim.Infrastructure.dll": {}
-        }
       }
     }
   },
@@ -256,17 +242,11 @@
       "type": "project",
       "path": "../TradingSim.Domain/TradingSim.Domain.csproj",
       "msbuildProject": "../TradingSim.Domain/TradingSim.Domain.csproj"
-    },
-    "TradingSim.Infrastructure/1.0.0": {
-      "type": "project",
-      "path": "../TradingSim.Infrastructure/TradingSim.Infrastructure.csproj",
-      "msbuildProject": "../TradingSim.Infrastructure/TradingSim.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "TradingSim.Domain >= 1.0.0",
-      "TradingSim.Infrastructure >= 1.0.0"
+      "TradingSim.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -304,9 +284,6 @@
           "projectReferences": {
             "E:\\MTS\\backend\\src\\TradingSim.Domain\\TradingSim.Domain.csproj": {
               "projectPath": "E:\\MTS\\backend\\src\\TradingSim.Domain\\TradingSim.Domain.csproj"
-            },
-            "E:\\MTS\\backend\\src\\TradingSim.Infrastructure\\TradingSim.Infrastructure.csproj": {
-              "projectPath": "E:\\MTS\\backend\\src\\TradingSim.Infrastructure\\TradingSim.Infrastructure.csproj"
             }
           }
         }

@@ -35,6 +35,9 @@
             "projectReferences": {
               "E:\\MTS\\backend\\src\\TradingSim.Application\\TradingSim.Application.csproj": {
                 "projectPath": "E:\\MTS\\backend\\src\\TradingSim.Application\\TradingSim.Application.csproj"
+              },
+              "E:\\MTS\\backend\\src\\TradingSim.Infrastructure\\TradingSim.Infrastructure.csproj": {
+                "projectPath": "E:\\MTS\\backend\\src\\TradingSim.Infrastructure\\TradingSim.Infrastructure.csproj"
               }
             }
           }
@@ -536,9 +539,6 @@
             "projectReferences": {
               "E:\\MTS\\backend\\src\\TradingSim.Domain\\TradingSim.Domain.csproj": {
                 "projectPath": "E:\\MTS\\backend\\src\\TradingSim.Domain\\TradingSim.Domain.csproj"
-              },
-              "E:\\MTS\\backend\\src\\TradingSim.Infrastructure\\TradingSim.Infrastructure.csproj": {
-                "projectPath": "E:\\MTS\\backend\\src\\TradingSim.Infrastructure\\TradingSim.Infrastructure.csproj"
               }
             }
           }
@@ -1227,6 +1227,9 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
+              "E:\\MTS\\backend\\src\\TradingSim.Application\\TradingSim.Application.csproj": {
+                "projectPath": "E:\\MTS\\backend\\src\\TradingSim.Application\\TradingSim.Application.csproj"
+              },
               "E:\\MTS\\backend\\src\\TradingSim.Domain\\TradingSim.Domain.csproj": {
                 "projectPath": "E:\\MTS\\backend\\src\\TradingSim.Domain\\TradingSim.Domain.csproj"
               }
@@ -1249,9 +1252,45 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.16.0, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.7.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.16.0, )"
             }
           },
           "imports": [

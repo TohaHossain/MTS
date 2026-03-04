@@ -1,18 +1,81 @@
-using MongoDB.Driver;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using TradingSim.Api.Middleware;
+using TradingSim.Application.UseCases.Auth;
+using TradingSim.Application.UseCases.Instruments;
+using TradingSim.Application.UseCases.Orders;
+using TradingSim.Application.UseCases.Trades;
+using TradingSim.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration["Mongo:ConnectionString"];
-var databaseName = builder.Configuration["Mongo:Database"];
+// Controllers + Swagger
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-var mongoClient = new MongoClient(connectionString);
-var database = mongoClient.GetDatabase(databaseName);
+// Infrastructure (Mongo, repos, jwt, engine, seed)
+builder.Services.AddInfrastructure(builder.Configuration);
+// Use cases
+builder.Services.AddScoped<SignupUseCase>();
+builder.Services.AddScoped<LoginUseCase>();
+builder.Services.AddScoped<CreateInstrumentUseCase>();
+builder.Services.AddScoped<ListInstrumentsUseCase>();
+builder.Services.AddScoped<PlaceOrderUseCase>();
+builder.Services.AddScoped<CancelOrderUseCase>();
+builder.Services.AddScoped<ListOpenOrdersUseCase>();
+builder.Services.AddScoped<GetMyTradesUseCase>();
+builder.Services.AddScoped<GetAllTradesUseCase>();
 
-// optional seed
-// await SeedData.SeedAsync(database);
-await SeedData.SeedAsync(database);
+// JWT Auth
+var jwtKey = builder.Configuration["Jwt:Key"]!;
+var issuer = builder.Configuration["Jwt:Issuer"]!;
+var audience = builder.Configuration["Jwt:Audience"]!;
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = issuer,
+            ValidAudience = audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+            ClockSkew = TimeSpan.FromSeconds(30)
+        };
+    });
+
+builder.Services.AddAuthorization();
+
+// CORS for React dev server
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("dev", p =>
+        p.AllowAnyHeader()
+         .AllowAnyMethod()
+         .AllowCredentials()
+         .SetIsOriginAllowed(_ => true));
+});
+
 var app = builder.Build();
 
-app.MapGet("/", () => "TradingSim API Running");
+// Middleware
+app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseCors("dev");
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
