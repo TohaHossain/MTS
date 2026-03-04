@@ -15,3 +15,4 @@ E:\MTS\backend\src\TradingSim.Application\obj\Debug\net10.0\TradingSim.Applicati
 E:\MTS\backend\src\TradingSim.Application\obj\Debug\net10.0\refint\TradingSim.Application.dll
 E:\MTS\backend\src\TradingSim.Application\obj\Debug\net10.0\TradingSim.Application.pdb
 E:\MTS\backend\src\TradingSim.Application\obj\Debug\net10.0\ref\TradingSim.Application.dll
+E:\MTS\backend\src\TradingSim.Application\obj\Debug\net10.0\TradingSim.Application.sourcelink.json

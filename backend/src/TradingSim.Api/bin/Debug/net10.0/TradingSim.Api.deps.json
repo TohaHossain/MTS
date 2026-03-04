@@ -228,6 +228,9 @@
         }
       },
       "TradingSim.Domain/1.0.0": {
+        "dependencies": {
+          "MongoDB.Driver": "3.7.0"
+        },
         "runtime": {
           "TradingSim.Domain.dll": {
             "assemblyVersion": "1.0.0.0",

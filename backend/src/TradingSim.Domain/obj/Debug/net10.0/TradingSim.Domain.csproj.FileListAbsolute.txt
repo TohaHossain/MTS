@@ -9,3 +9,5 @@ E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.dll
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\refint\TradingSim.Domain.dll
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.pdb
 E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\ref\TradingSim.Domain.dll
+E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.sourcelink.json
+E:\MTS\backend\src\TradingSim.Domain\obj\Debug\net10.0\TradingSim.Domain.csproj.AssemblyReference.cache
