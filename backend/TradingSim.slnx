@@ -5,4 +5,7 @@
     <Project Path="src/TradingSim.Domain/TradingSim.Domain.csproj" />
     <Project Path="src/TradingSim.Infrastructure/TradingSim.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TradingSim.Tests/TradingSim.Tests.csproj" />
+  </Folder>
 </Solution>

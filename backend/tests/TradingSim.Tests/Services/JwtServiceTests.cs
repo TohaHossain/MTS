@@ -53,6 +53,6 @@ public class JwtServiceTests
 
         jwt.Claims.Should().Contain(c => c.Type == "sub" && c.Value == user.Id);
         jwt.Claims.Should().Contain(c => c.Type == "email" && c.Value == user.Email);
-        jwt.Claims.Should().Contain(c => c.Type == "role" && c.Value == user.Role.ToString());
+        jwt.Claims.Should().Contain(c => c.Type == System.Security.Claims.ClaimTypes.Role && c.Value == user.Role.ToString());
     }
 }

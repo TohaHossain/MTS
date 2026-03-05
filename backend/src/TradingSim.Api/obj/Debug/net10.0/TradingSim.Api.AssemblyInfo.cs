@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TradingSim.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0bcac9aa9f966eb4a43ce2431bd5079602b2760")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4cd579dd2c56f743dea26ef359cea3d230bb40b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TradingSim.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TradingSim.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
