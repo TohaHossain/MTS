@@ -163,8 +163,15 @@ export default function PlaceOrderPage() {
               className="input"
               type="number"
               min={1}
+              max={selectedInstrument?.maxQuantity}
               value={qty}
-              onChange={(e) => setQty(Number(e.target.value))}
+              onChange={(e) => {
+                let val = Number(e.target.value);
+                if (selectedInstrument && val > selectedInstrument.maxQuantity) {
+                  val = selectedInstrument.maxQuantity;
+                }
+                setQty(val);
+              }}
             />
           </div>
 

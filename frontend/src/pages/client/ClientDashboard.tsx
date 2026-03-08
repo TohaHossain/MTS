@@ -77,6 +77,7 @@ export default function ClientDashboard() {
               <th>Symbol</th>
               <th>Name</th>
               <th>Last Price</th>
+              <th>Max Qty</th>
             </tr>
           </thead>
           <tbody>
@@ -87,6 +88,7 @@ export default function ClientDashboard() {
                 </td>
                 <td>{x.name}</td>
                 <td>{x.lastPrice}</td>
+                <td>{x.maxQuantity}</td>
               </tr>
             ))}
           </tbody>

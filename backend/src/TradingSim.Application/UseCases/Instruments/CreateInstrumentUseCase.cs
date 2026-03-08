@@ -23,7 +23,8 @@ public sealed class CreateInstrumentUseCase
         {
             Symbol = request.Symbol,
             Name = request.Name,
-            LastPrice = request.LastPrice
+            LastPrice = request.LastPrice,
+            MaxQuantity = request.MaxQuantity
         };
 
         await _repo.CreateAsync(instrument);

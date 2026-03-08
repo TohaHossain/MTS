@@ -33,12 +33,16 @@ public static class SeedData
             new() { Symbol = "WALTONHIL", Name = "Walton Hi-Tech Industries Ltd." }
         };
 
+        var rnd = new Random();
         foreach (var ins in instruments)
         {
             var filter = Builders<Instrument>.Filter.Eq(x => x.Symbol, ins.Symbol);
             var update = Builders<Instrument>.Update
                 .Set(x => x.Symbol, ins.Symbol)
-                .Set(x => x.Name, ins.Name);
+                .Set(x => x.Name, ins.Name)
+                .SetOnInsert(x => x.LastPrice, Math.Round((decimal)(rnd.NextDouble() * 450 + 50), 2))
+                .SetOnInsert(x => x.MaxQuantity, rnd.Next(1000, 100000))
+                .SetOnInsert(x => x.UpdatedUtc, DateTime.UtcNow);
 
             await collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true });
         }

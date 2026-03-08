@@ -8,6 +8,7 @@ export default function InstrumentsAdminPage() {
   const [symbol, setSymbol] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState<number>(100);
+  const [maxQuantity, setMaxQuantity] = useState<number>(10000);
 
   const [err, setErr] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
@@ -62,16 +63,21 @@ export default function InstrumentsAdminPage() {
       setErr("Last price must be greater than 0");
       return;
     }
+    if (!Number.isFinite(maxQuantity) || maxQuantity <= 0) {
+      setErr("Quantity must be greater than 0");
+      return;
+    }
 
     try {
       setCreating(true);
 
-      const res = await createInstrument({ symbol: s, name: n, lastPrice: price });
+      const res = await createInstrument({ symbol: s, name: n, lastPrice: price, maxQuantity });
       setMsg(res.message);
 
       setSymbol("");
       setName("");
       setPrice(100);
+      setMaxQuantity(10000);
 
       await load();
     } catch (ex: any) {
@@ -122,6 +128,17 @@ export default function InstrumentsAdminPage() {
               onChange={(e) => setPrice(Number(e.target.value))}
             />
           </div>
+
+          <div style={{ width: 180 }}>
+            <label>Max Quantity</label>
+            <input
+              className="input"
+              type="number"
+              step="1"
+              value={maxQuantity}
+              onChange={(e) => setMaxQuantity(Number(e.target.value))}
+            />
+          </div>
         </div>
 
         {err && <div style={{ marginTop: 10, color: "crimson" }}>{err}</div>}
@@ -141,6 +158,7 @@ export default function InstrumentsAdminPage() {
             <th>Symbol</th>
             <th>Name</th>
             <th>Last Price</th>
+            <th>Max Qty</th>
           </tr>
         </thead>
         <tbody>
@@ -151,11 +169,12 @@ export default function InstrumentsAdminPage() {
               </td>
               <td>{i.name}</td>
               <td>{i.lastPrice}</td>
+              <td>{i.maxQuantity}</td>
             </tr>
           ))}
           {!loading && items.length === 0 && (
             <tr>
-              <td colSpan={3}>No instruments</td>
+              <td colSpan={4}>No instruments</td>
             </tr>
           )}
         </tbody>

@@ -16,5 +16,7 @@ public sealed class Instrument
     // Admin controls this "reference" price for demo
     public decimal LastPrice { get; set; }
 
+    public long MaxQuantity { get; set; }
+
     public DateTime UpdatedUtc { get; set; } = DateTime.UtcNow;
 }
