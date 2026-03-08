@@ -1,14 +1,44 @@
 :root {
   font-family: system-ui, Arial, sans-serif;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --card-bg: #ffffff;
+  --card-border: #dddddd;
+  --input-bg: #ffffff;
+  --input-border: #cccccc;
+  --btn-bg: #ffffff;
+  --btn-border: #333333;
+  --table-border: #eeeeee;
+  --badge-bg: #f5f5f5;
+  --badge-border: #cccccc;
+  --link-color: #0b5fff;
+}
+
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --card-border: #333333;
+  --input-bg: #2d2d2d;
+  --input-border: #444444;
+  --btn-bg: #2d2d2d;
+  --btn-border: #555555;
+  --table-border: #333333;
+  --badge-bg: #2d2d2d;
+  --badge-border: #444444;
+  --link-color: #64b5f6;
 }
 
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 a {
-  color: #0b5fff;
+  color: var(--link-color);
   text-decoration: none;
 }
 
@@ -23,10 +53,12 @@ a:hover {
 }
 
 .card {
-  border: 1px solid #ddd;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 10px;
   padding: 14px;
   margin: 12px 0;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .row {
@@ -39,15 +71,20 @@ a:hover {
   width: 100%;
   padding: 8px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .btn {
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #fff;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--text-color);
   cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .btn:disabled {
@@ -61,7 +98,7 @@ a:hover {
 }
 
 .table th, .table td {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--table-border);
   padding: 10px 6px;
   text-align: left;
 }
@@ -69,7 +106,9 @@ a:hover {
 .badge {
   display: inline-block;
   padding: 2px 8px;
-  border: 1px solid #ccc;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--badge-border);
   border-radius: 999px;
   font-size: 12px;
+  color: var(--text-color);
 }

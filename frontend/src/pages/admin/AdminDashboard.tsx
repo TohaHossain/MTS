@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { clearAuth } from "../../app/auth.store";
+import ThemeToggle from "../../components/common/ThemeToggle";
 
 export default function AdminDashboard() {
   const nav = useNavigate();
@@ -13,9 +14,12 @@ export default function AdminDashboard() {
     <div className="container">
       <div className="row" style={{ justifyContent: "space-between", alignItems: "center" }}>
         <h2>Admin Dashboard</h2>
-        <button className="btn" onClick={onLogout}>
-          Logout
-        </button>
+        <div className="row" style={{ gap: "12px" }}>
+          <ThemeToggle />
+          <button className="btn" onClick={onLogout}>
+            Logout
+          </button>
+        </div>
       </div>
 
       <div className="card">
