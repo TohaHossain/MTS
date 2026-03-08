@@ -22,4 +22,7 @@ public sealed class UserRepository : IUserRepository
 
     public async Task CreateAsync(User user)
         => await _col.InsertOneAsync(user);
+
+    public async Task UpdateAsync(User user)
+        => await _col.ReplaceOneAsync(x => x.Id == user.Id, user);
 }

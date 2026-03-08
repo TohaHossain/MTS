@@ -54,12 +54,14 @@ export default function ClientDashboard() {
           <Link to="/client/place-order">Place Order</Link>
           <Link to="/client/orders">My Open Orders</Link>
           <Link to="/client/trades">My Trades</Link>
+          <Link to="/client/power">Deposit Balance</Link>
 
           {role === "Admin" && (
             <>
               <Link to="/admin">Admin Home</Link>
               <Link to="/admin/instruments">Manage Instruments</Link>
               <Link to="/admin/trades">All Trades</Link>
+              <Link to="/admin/power">Review Deposits</Link>
             </>
           )}
         </div>

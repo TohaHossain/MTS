@@ -32,6 +32,13 @@ builder.Services.AddScoped<ListOpenOrdersUseCase>();
 builder.Services.AddScoped<GetMyTradesUseCase>();
 builder.Services.AddScoped<GetAllTradesUseCase>();
 
+// Power Use Cases
+builder.Services.AddScoped<TradingSim.Application.UseCases.Power.RequestPowerUseCase>();
+builder.Services.AddScoped<TradingSim.Application.UseCases.Power.ListMyPowerRequestsUseCase>();
+builder.Services.AddScoped<TradingSim.Application.UseCases.Power.ListPendingPowerRequestsUseCase>();
+builder.Services.AddScoped<TradingSim.Application.UseCases.Power.ReviewPowerUseCase>();
+builder.Services.AddScoped<TradingSim.Application.UseCases.Power.GetBalanceUseCase>();
+
 // JWT Auth
 var jwtKey = builder.Configuration["Jwt:Key"]!;
 var issuer = builder.Configuration["Jwt:Issuer"]!;

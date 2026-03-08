@@ -12,17 +12,20 @@ public sealed class PlaceOrderUseCase
     private readonly IOrderRepository _orders;
     private readonly ITradeRepository _trades;
     private readonly IMatchingEngine _matching;
+    private readonly IUserRepository _users;
 
     public PlaceOrderUseCase(
         IInstrumentRepository instruments,
         IOrderRepository orders,
         ITradeRepository trades,
-        IMatchingEngine matching)
+        IMatchingEngine matching,
+        IUserRepository users)
     {
         _instruments = instruments;
         _orders = orders;
         _trades = trades;
         _matching = matching;
+        _users = users;
     }
 
     public async Task<OrderDto> ExecuteAsync(string userId, PlaceOrderRequest request)
@@ -45,6 +48,21 @@ public sealed class PlaceOrderUseCase
         // But we still allow the request to be saved if you want; here we keep it strict:
         if (request.Type is not (OrderType.Market or OrderType.Limit))
             throw new Exception("For demo: only Market and Limit orders are supported.");
+
+        var user = await _users.GetByIdAsync(userId) ?? throw new Exception("User not found.");
+
+        if (request.Side == OrderSide.Buy)
+        {
+            var cost = request.Type == OrderType.Limit 
+                ? request.LimitPrice!.Value * request.Quantity 
+                : instrument.LastPrice * request.Quantity;
+
+            if (user.PurchasePower < cost)
+                throw new Exception($"Insufficient Purchase Power. Needed: {cost}");
+
+            user.PurchasePower -= cost;
+            await _users.UpdateAsync(user);
+        }
 
         // 3) Create order
         var now = DateTime.UtcNow;
@@ -69,8 +87,16 @@ public sealed class PlaceOrderUseCase
         // 4) Persist NEW order first (so it has an Id for trade references)
         await _orders.CreateAsync(order);
 
-        // 5) Match
         var match = _matching.Match(order);
+
+        if (request.Side == OrderSide.Buy && !order.IsActive && order.RemainingQuantity > 0)
+        {
+            var cost = request.Type == OrderType.Limit 
+                ? request.LimitPrice!.Value * order.RemainingQuantity 
+                : instrument.LastPrice * order.RemainingQuantity;
+            user.PurchasePower += cost;
+            await _users.UpdateAsync(user);
+        }
 
         // 6) Persist resulting trades + orders
         if (match.Trades.Count > 0)

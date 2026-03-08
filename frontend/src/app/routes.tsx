@@ -12,6 +12,8 @@ import MyTradesPage from "../pages/client/MyTradesPage";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import InstrumentsAdminPage from "../pages/admin/InstrumentsAdminPage";
 import AllTradesPage from "../pages/admin/AllTradesPage";
+import PurchasePowerAdminPage from "../pages/admin/PurchasePowerAdminPage";
+import PurchasePowerPage from "../pages/client/PurchasePowerPage";
 
 export const router = createBrowserRouter([
   { path: "/login", element: <LoginPage /> },
@@ -53,12 +55,29 @@ export const router = createBrowserRouter([
     ),
   },
 
+  {
+    path: "/client/power",
+    element: (
+      <ProtectedRoute allow={["Client"]}>
+        <PurchasePowerPage />
+      </ProtectedRoute>
+    ),
+  },
+
   // Admin-only routes (matches backend: Instruments POST + Trades GET)
   {
     path: "/admin",
     element: (
       <ProtectedRoute allow={["Admin"]}>
         <AdminDashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/power",
+    element: (
+      <ProtectedRoute allow={["Admin"]}>
+        <PurchasePowerAdminPage />
       </ProtectedRoute>
     ),
   },

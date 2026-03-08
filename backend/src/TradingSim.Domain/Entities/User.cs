@@ -13,6 +13,7 @@ public sealed class User
     public string Email { get; set; } = default!;
     public string PasswordHash { get; set; } = default!;
     public UserRole Role { get; set; } = UserRole.Client;
+    public decimal PurchasePower { get; set; } = 0;
 
     public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
 }

@@ -25,6 +25,7 @@ public static class DependencyInjection
         services.AddScoped<IInstrumentRepository, InstrumentRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<ITradeRepository, TradeRepository>();
+        services.AddScoped<IPurchasePowerRequestRepository, PurchasePowerRequestRepository>();
 
         // Security
         services.AddSingleton<IPasswordHasher, PasswordHasher>();

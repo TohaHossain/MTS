@@ -6,4 +6,5 @@ public static class Collections
     public const string Instruments = "instruments";
     public const string Orders = "orders";
     public const string Trades = "trades";
+    public const string PurchasePowerRequests = "purchase_power_requests";
 }
