@@ -89,16 +89,55 @@ public sealed class PlaceOrderUseCase
 
         var match = _matching.Match(order);
 
-        if (request.Side == OrderSide.Buy && !order.IsActive && order.RemainingQuantity > 0)
+        // 5) Process trades (proceeds for sellers, refunds for buyers)
+        if (match.Trades.Count > 0)
         {
-            var cost = request.Type == OrderType.Limit 
-                ? request.LimitPrice!.Value * order.RemainingQuantity 
-                : instrument.LastPrice * order.RemainingQuantity;
-            user.PurchasePower += cost;
-            await _users.UpdateAsync(user);
+            foreach (var t in match.Trades)
+            {
+                // Seller always gets Price * Quantity added to their power
+                if (t.SellerUserId == userId)
+                {
+                    user.PurchasePower += t.Price * t.Quantity;
+                }
+                else
+                {
+                    var sellerUser = await _users.GetByIdAsync(t.SellerUserId);
+                    if (sellerUser != null)
+                    {
+                        sellerUser.PurchasePower += t.Price * t.Quantity;
+                        await _users.UpdateAsync(sellerUser);
+                    }
+                }
+
+                // If incoming was Buyer, refund the difference if they matched at a lower price than escrowed
+                if (request.Side == OrderSide.Buy && t.BuyerUserId == userId)
+                {
+                    var escrowPrice = request.Type == OrderType.Limit 
+                        ? request.LimitPrice!.Value 
+                        : instrument.LastPrice;
+                    
+                    var refundPerUnit = escrowPrice - t.Price;
+                    if (refundPerUnit > 0)
+                    {
+                        user.PurchasePower += refundPerUnit * t.Quantity;
+                    }
+                }
+            }
         }
 
-        // 6) Persist resulting trades + orders
+        // 6) If the order is now inactive but has remaining quantity (e.g. Market or IOC), refund unfilled escrow
+        if (request.Side == OrderSide.Buy && !order.IsActive && order.RemainingQuantity > 0)
+        {
+            var escrowPrice = request.Type == OrderType.Limit 
+                ? request.LimitPrice!.Value 
+                : instrument.LastPrice;
+            user.PurchasePower += escrowPrice * order.RemainingQuantity;
+        }
+
+        // Final save for incoming user
+        await _users.UpdateAsync(user);
+
+        // 7) Persist resulting trades + orders
         if (match.Trades.Count > 0)
             await _trades.CreateManyAsync(match.Trades);
 
@@ -106,7 +145,7 @@ public sealed class PlaceOrderUseCase
         foreach (var updated in match.UpdatedOrders)
             await _orders.UpdateAsync(updated);
 
-        // 7) Optionally: update instrument "LastPrice" to last trade price (nice for UI)
+        // 8) Update instrument "LastPrice" to last trade price
         if (match.Trades.Count > 0)
         {
             var lastTradePrice = match.Trades[^1].Price;
