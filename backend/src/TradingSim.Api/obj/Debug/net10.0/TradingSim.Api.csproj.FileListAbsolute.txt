@@ -55,3 +55,4 @@ E:\MTS\backend\src\TradingSim.Api\obj\Debug\net10.0\refint\TradingSim.Api.dll
 E:\MTS\backend\src\TradingSim.Api\obj\Debug\net10.0\TradingSim.Api.pdb
 E:\MTS\backend\src\TradingSim.Api\obj\Debug\net10.0\TradingSim.Api.genruntimeconfig.cache
 E:\MTS\backend\src\TradingSim.Api\obj\Debug\net10.0\ref\TradingSim.Api.dll
+E:\MTS\backend\src\TradingSim.Api\bin\Debug\net10.0\Datadog.Trace.Manual.dll

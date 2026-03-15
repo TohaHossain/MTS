@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6O+wI2SaXDI=",
+  "dgSpecHash": "F6PyrQfplgQ=",
   "success": true,
   "projectFilePath": "E:\\MTS\\backend\\src\\TradingSim.Api\\TradingSim.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\datadog.trace\\3.39.0\\datadog.trace.3.39.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.3\\microsoft.aspnetcore.authentication.jwtbearer.10.0.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.2\\microsoft.aspnetcore.openapi.10.0.2.nupkg.sha512",

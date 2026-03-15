@@ -83,6 +83,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseCors("dev");
+app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

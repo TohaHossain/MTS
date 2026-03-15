@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v10.0": {
       "TradingSim.Api/1.0.0": {
         "dependencies": {
+          "Datadog.Trace": "3.39.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.3",
           "Microsoft.AspNetCore.OpenApi": "10.0.2",
           "Swashbuckle.AspNetCore": "10.1.4",
@@ -16,6 +17,14 @@
         },
         "runtime": {
           "TradingSim.Api.dll": {}
+        }
+      },
+      "Datadog.Trace/3.39.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/Datadog.Trace.Manual.dll": {
+            "assemblyVersion": "3.39.0.0",
+            "fileVersion": "3.39.0.0"
+          }
         }
       },
       "DnsClient/1.6.1": {
@@ -260,6 +269,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Datadog.Trace/3.39.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PGXMFpFBqdmFCPrTVhXr0kQyqctgheftWaUI0pzmbWynVvdcE6eDkdSmHy5P+zqS9psGWHgOEVcao+ZEISZlnQ==",
+      "path": "datadog.trace/3.39.0",
+      "hashPath": "datadog.trace.3.39.0.nupkg.sha512"
     },
     "DnsClient/1.6.1": {
       "type": "package",

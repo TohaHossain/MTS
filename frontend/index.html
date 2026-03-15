@@ -6,8 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>frontend</title>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script src="https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js"></script>
+
+    <script>
+    window.DD_RUM.init({
+    applicationId: 'abfd62d8-d48c-4592-9135-8486d38a98fd',
+    clientToken: 'pub95389e76020d32ceeee9a705dcf35d82',
+    site: 'datadoghq.com',
+    service: 'tradingsim-frontend',
+    env: 'local',
+    version: '0.1.0',
+
+    sessionSampleRate: 100,
+    sessionReplaySampleRate: 100,
+    trackUserInteractions: true,
+    trackResources: true,
+    trackLongTasks: true,
+
+    defaultPrivacyLevel: 'mask-user-input'
+});
+    </script>
   </body>
 </html>
+
