@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+
+  api:
+    build:
+      context: ./backend/src/
+      dockerfile: TradingSim.Api/Dockerfile
+    ports:
+      - "7001:8080"
+    container_name: tradingsim-api
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    container_name: tradingsim-frontend
+    depends_on:
+      - api
+  mongo:
+    image: mongo:7
+    container_name: tradingsim-mongo
+    ports:
+      - "27017:27017"
