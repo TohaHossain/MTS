@@ -1,0 +1,19 @@
+replicaCount: 2
+
+api:
+  image: mts-api:latest
+  imagePullPolicy: Never
+  port: 8080
+
+frontend:
+  image: mts-frontend:latest
+  imagePullPolicy: Never
+  port: 80
+
+mongo:
+  image: mongo:7
+  port: 27017
+
+ingress:
+  enabled: true
+  host: mts.local
