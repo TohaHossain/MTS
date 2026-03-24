@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Gradle wrapper distributions
+# Gradle
+.gradle/
+**/wrapper/dists/
+
+# Build outputs
+build/
+out/

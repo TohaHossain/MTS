@@ -1,1 +1,18 @@
-{}
+{
+	"appId": "com.Tradingsimulator.app",
+	"appName": "TradingSimulator",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "dist",
+	"server": {
+		"url": "http://localhost:5173",
+		"cleartext": true
+	},
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
+	"cordova": {},
+	"packageClassList": []
+}
