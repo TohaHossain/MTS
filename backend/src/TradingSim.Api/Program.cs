@@ -73,6 +73,10 @@ builder.Services.AddCors(opt =>
          .AllowCredentials()
          .SetIsOriginAllowed(_ => true));
 });
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.HttpsPort = 7001;
+});
 
 var app = builder.Build();
 
