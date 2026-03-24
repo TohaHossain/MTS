@@ -30,6 +30,7 @@ export default function LoginPage() {
 
       // store auth info
       setAuth(res.token, res.role, res.email);
+      localStorage.setItem("token", res.token);
 
       // redirect based on role
       nav(res.role === "Admin" ? "/admin" : "/");

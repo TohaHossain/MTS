@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TradingSim.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53afc88761a520526824ede206965b2678597d1a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a070a4fa2ad7d83474fd28bed0f8617360f5b5d")]
 [assembly: System.Reflection.AssemblyProductAttribute("TradingSim.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TradingSim.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

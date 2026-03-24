@@ -68,10 +68,10 @@ builder.Services.AddAuthorization();
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("dev", p =>
-        p.AllowAnyHeader()
+        p.WithOrigins("http://localhost:5173") // 👈 your frontend port
+         .AllowAnyHeader()
          .AllowAnyMethod()
-         .AllowCredentials()
-         .SetIsOriginAllowed(_ => true));
+         .AllowCredentials());
 });
 builder.Services.AddHttpsRedirection(options =>
 {
@@ -87,7 +87,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseCors("dev");
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
