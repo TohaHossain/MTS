@@ -18,6 +18,10 @@ spec:
           imagePullPolicy: {{ .Values.api.imagePullPolicy }}
           ports:
             - containerPort: 8080
+          
           env:
             - name: Mongo__ConnectionString
-              value: "mongodb://mongo:27017"
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: connectionString
