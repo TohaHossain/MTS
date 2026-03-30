@@ -1,4 +1,5 @@
 using MongoDB.Driver;
+using MongoDB.Bson;
 using TradingSim.Domain.Entities;
 
 namespace TradingSim.Infrastructure.Seed;
@@ -7,6 +8,9 @@ public static class SeedData
 {
     public static async Task SeedAsync(IMongoDatabase database)
     {
+        // 🔥 Wait for Mongo PRIMARY before doing anything
+        await WaitForPrimaryAsync(database);
+
         var collection = database.GetCollection<Instrument>("instruments");
 
         var instruments = new List<Instrument>
@@ -34,13 +38,20 @@ public static class SeedData
         };
 
         var rnd = new Random();
+
         foreach (var ins in instruments)
         {
             var filter = Builders<Instrument>.Filter.Eq(x => x.Symbol, ins.Symbol);
+
             var existing = await collection.Find(filter).FirstOrDefaultAsync();
 
-            var qty = existing != null && existing.MaxQuantity > 0 ? existing.MaxQuantity : rnd.Next(1000, 10000);
-            var price = existing != null && existing.LastPrice > 0 ? existing.LastPrice : Math.Round((decimal)(rnd.NextDouble() * 450 + 50), 2);
+            var qty = existing != null && existing.MaxQuantity > 0
+                ? existing.MaxQuantity
+                : rnd.Next(1000, 10000);
+
+            var price = existing != null && existing.LastPrice > 0
+                ? existing.LastPrice
+                : Math.Round((decimal)(rnd.NextDouble() * 450 + 50), 2);
 
             var update = Builders<Instrument>.Update
                 .Set(x => x.Symbol, ins.Symbol)
@@ -51,5 +62,38 @@ public static class SeedData
 
             await collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true });
         }
+    }
+
+    // 🔥 CRITICAL PART
+    private static async Task WaitForPrimaryAsync(IMongoDatabase database)
+    {
+        var client = database.Client;
+
+        for (int i = 0; i < 10; i++)
+        {
+            try
+            {
+                var adminDb = client.GetDatabase("admin");
+
+                var result = await adminDb.RunCommandAsync<BsonDocument>(
+                    new BsonDocument("isMaster", 1)
+                );
+
+                if (result.Contains("ismaster") && result["ismaster"].AsBoolean)
+                {
+                    Console.WriteLine("Mongo PRIMARY is ready.");
+                    return;
+                }
+            }
+            catch
+            {
+                // ignore errors
+            }
+
+            Console.WriteLine("Waiting for Mongo PRIMARY...");
+            await Task.Delay(3000);
+        }
+
+        throw new Exception("Mongo PRIMARY not available after retries.");
     }
 }
