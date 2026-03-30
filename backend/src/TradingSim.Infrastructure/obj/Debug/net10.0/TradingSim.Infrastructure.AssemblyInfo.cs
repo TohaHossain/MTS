@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TradingSim.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3b68b06906c824c9acc269fb59b7daac30b1ca4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+609a07f05846c04b2bfc71991abe2c491c95b336")]
 [assembly: System.Reflection.AssemblyProductAttribute("TradingSim.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TradingSim.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

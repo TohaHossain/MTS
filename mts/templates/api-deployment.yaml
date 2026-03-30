@@ -18,10 +18,15 @@ spec:
           imagePullPolicy: {{ .Values.api.imagePullPolicy }}
           ports:
             - containerPort: 8080
-          
+
           env:
-            - name: Mongo__ConnectionString
+            # ✅ MongoDB Atlas connection
+            - name: MONGO_URI
               valueFrom:
                 secretKeyRef:
                   name: mongo-secret
                   key: connectionString
+
+            # ✅ VERY IMPORTANT (ensures Production config is used)
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"

@@ -1,0 +1,17 @@
+replicaCount: 2
+
+api:
+  image: tohahossainxfn/mts-api:latest
+  imagePullPolicy: Always
+  port: 8080
+
+frontend:
+  image: tohahossainxfn/mts-frontend:latest
+  imagePullPolicy: Always
+  port: 80
+
+
+
+ingress:
+  enabled: true
+  host: mts.local

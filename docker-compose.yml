@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   api:
@@ -9,6 +7,8 @@ services:
     ports:
       - "7001:8080"
     container_name: tradingsim-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
 
   frontend:
     build:
@@ -19,8 +19,3 @@ services:
     container_name: tradingsim-frontend
     depends_on:
       - api
-  mongo:
-    image: mongo:7
-    container_name: tradingsim-mongo
-    ports:
-      - "27017:27017"

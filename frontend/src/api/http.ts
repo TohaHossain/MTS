@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/+$/, "") ?? "/api";
+  import.meta.env.VITE_API_BASE_URL?.replace(/\/+$/, "") ?? "https://mts-api.onrender.com";//https://mts-api.onrender.com//api
 
 export const http = axios.create({
   baseURL: API_BASE_URL,
