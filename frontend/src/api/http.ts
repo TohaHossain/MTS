@@ -1,7 +1,17 @@
 import axios from "axios";
 
+// 🔥 Detect environment safely
+const isLocalhost =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1");
+
+// ✅ Final base URL logic
 export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/+$/, "") ?? "https://mts-api.onrender.com";//https://mts-api.onrender.com//api
+  import.meta.env.VITE_API_BASE_URL?.replace(/\/+$/, "") ||
+  (isLocalhost
+    ? "https://localhost:7001/" // 👈 local backend
+    : "https://mts-api.onrender.com/api"); // 👈 production backend
 
 export const http = axios.create({
   baseURL: API_BASE_URL,
@@ -10,9 +20,9 @@ export const http = axios.create({
   },
 });
 
-// Attach JWT token for protected endpoints
+// ✅ Attach JWT token
 http.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token"); // keep same storage key
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers = config.headers ?? {};
     config.headers.Authorization = `Bearer ${token}`;
@@ -20,12 +30,11 @@ http.interceptors.request.use((config) => {
   return config;
 });
 
-// (Optional but useful) auto-logout if token is invalid/expired
+// ✅ Handle expired token
 http.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err?.response?.status === 401) {
-      // token invalid/expired -> clear and let UI redirect via ProtectedRoute
       localStorage.removeItem("token");
     }
     return Promise.reject(err);

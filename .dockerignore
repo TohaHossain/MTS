@@ -34,4 +34,5 @@ obj
 
 # Docker
 Dockerfile*
-docker-compose*
+docker-compose.yml
+.env

@@ -98,7 +98,8 @@ builder.Services.AddCors(options =>
                 "https://mts-frontend-latest.onrender.com" // production
             )
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .AllowCredentials();
             // ❌ DO NOT use AllowCredentials() unless needed
     });
 });
